@@ -1,4 +1,4 @@
-const dictionary = require('../dictionary');
+const dictionary = require('../scripts/dictionary');
 //
 describe('dictionary', () => {
   //
