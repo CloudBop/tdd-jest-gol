@@ -32,6 +32,7 @@ const countNeighbours = (grid, cellIdx) => {
     // above + above left
     (grid[cellIdx - width] || 0) +
     (grid[cellIdx - width - 1] || 0) +
+    (grid[cellIdx - width + 1] || 0) +
 
     // below + below right
     (grid[cellIdx + width] || 0) +
