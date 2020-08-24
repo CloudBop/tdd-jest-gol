@@ -42,8 +42,40 @@ describe('gol', () => {
     })
 
 
-    xtest('should return all alive neighbours', () => {
-      const grid = [1, 1, 1, 1]
+    test('should return 2 alive neighbours', () => {
+      const idx = 0
+      // [
+      //   idx, 1 ,
+      //    1 , 0 
+      // ]
+      expect(countNeighbours([1, 1, 1, 0], idx)).toEqual(2)
+    })
+
+    test('should return 2 alive neighbours', () => {
+      const idx = 1
+      // [
+      //    1 , idx
+      //    1 , 0 
+      // ]
+      expect(countNeighbours([1, 1, 1, 0], idx)).toEqual(2)
+    })
+
+    test('should return 2 alive neighbours', () => {
+      const idx = 2
+      // [
+      //    1 , 1
+      //   idx, 0 
+      // ]
+      expect(countNeighbours([1, 1, 1, 0], idx)).toEqual(2)
+    })
+
+    test('should return 3 alive neighbours', () => {
+      const idx = 3
+      // [
+      //    1 , 1 ,
+      //    1 , idx 
+      // ]
+      expect(countNeighbours([1, 1, 1, 0], idx)).toEqual(3)
     })
 
   })

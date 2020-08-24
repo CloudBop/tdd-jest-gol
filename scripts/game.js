@@ -24,9 +24,16 @@ const countNeighbours = (grid, cellIdx) => {
   // ]`
 
   const width = Math.sqrt(grid.length)
-
+  // use reducer to check neighbours 
   return add(
+    // left + right
+    (grid[cellIdx - 1] || 0) +
     (grid[cellIdx + 1] || 0) +
+    // above + above left
+    (grid[cellIdx - width] || 0) +
+    (grid[cellIdx - width - 1] || 0) +
+
+    // below + below right
     (grid[cellIdx + width] || 0) +
     (grid[cellIdx + width + 1] || 0)
   )
