@@ -1,0 +1,16 @@
+{
+  "name": "tdd-gameoflife",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dictionary.js",
+  "dependencies": {
+    "jest": "^26.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest --coverage",
+    "dev": "jest --coverage --watch"
+  },
+  "author": "",
+  "license": "ISC"
+}
