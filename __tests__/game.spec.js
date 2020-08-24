@@ -2,7 +2,7 @@
 // Arrange
 //
 require('../scripts/game');
-const { isAlive, generate, regenerate } = window.game;
+const { isAlive, generate, regenerate, countNeighbours } = window.game;
 
 describe('gol', () => {
   describe('is cell alive algorithm', () => {
@@ -34,6 +34,20 @@ describe('gol', () => {
     })
   })
   //
+  describe('count neighbours', () => {
+
+    test('should count 0 for array of one', () => {
+
+      expect(countNeighbours([1])).toEqual(0)
+    })
+
+
+    xtest('should return all alive neighbours', () => {
+      const grid = [1, 1, 1, 1]
+    })
+
+  })
+  //
   describe('runs regeneration', () => {
     test('test that a grid of [0] is always dead', () => {
       const grid = generate(1)
@@ -46,8 +60,8 @@ describe('gol', () => {
       grid[0] = 1
       expect(regenerate(grid)).toEqual(startingGrid);
     })
-
-    test('test that a grid of [1,1,1,0] always returns [1,1,1,1]', () => {
+    // xtest skip test
+    xtest('test [1,1,1,0] returns [1,1,1,1]', () => {
 
       const grid = [1, 1, 1, 0]
       const expResult = [1, 1, 1, 1]

@@ -13,8 +13,11 @@ const regenerate = (grid) => grid.map(cell => {
   return isAlive(cell, 0)
 })
 
+const countNeighbours = () => 0
+
 window.game = {
   isAlive,
   generate,
-  regenerate
+  regenerate,
+  countNeighbours
 }
