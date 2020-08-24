@@ -15,8 +15,8 @@ const regenerate = (grid) => grid.map(cell => {
 
 const add = (...args) => args.reduce((acc, current) => acc + (current || 0))
 
-const countNeighbours = (grid, cellIdx) => {
-  // cellIdx = 4
+const countNeighbours = (grid, idx) => {
+  // idx = 4
   // `[
   //   1, 1, 1, 
   //   1, idx, 1, 
@@ -26,17 +26,23 @@ const countNeighbours = (grid, cellIdx) => {
   const width = Math.sqrt(grid.length)
   // use reducer to check neighbours 
   return add(
-    // left + right
-    (grid[cellIdx - 1] || 0) +
-    (grid[cellIdx + 1] || 0) +
-    // above + above left
-    (grid[cellIdx - width] || 0) +
-    (grid[cellIdx - width - 1] || 0) +
-    (grid[cellIdx - width + 1] || 0) +
+    // left
+    idx % width ? grid[idx - 1] : 0,
+    // right
+    (idx + 1) % width ? grid[idx + 1] : 0,
+    // above
+    grid[idx - width],
+    // above left
+    idx % width ? grid[idx - width - 1] : 0,
+    // above right
+    (idx + 1) % width ? grid[idx - width + 1] : 0,
+    // below
+    grid[idx + width],
+    // below left
+    idx % width ? grid[idx + width - 1] : 0,
+    // below right
+    (idx + 1) % width ? grid[idx + width + 1] : 0,
 
-    // below + below right
-    (grid[cellIdx + width] || 0) +
-    (grid[cellIdx + width + 1] || 0)
   )
 }
 
