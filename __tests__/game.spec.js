@@ -17,6 +17,13 @@ describe('gol', () => {
       expect(isAlive(0, 3)).toEqual(1);
     })
 
+    test('live cell with 0 neighbours should return dead 0 ', () => {
+      expect(isAlive(1, 0)).toEqual(0);
+    })
+
+    test('live cell with 2 neighbours should return alive 1', () => {
+      expect(isAlive(1, 2)).toEqual(1)
+    })
 
   })
 })
