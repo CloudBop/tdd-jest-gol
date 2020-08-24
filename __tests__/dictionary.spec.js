@@ -11,4 +11,10 @@ describe('dictionary', () => {
     //
     expect(dictionary('the')).toEqual({ the: 1 })
   })
+  //
+  test('should return 2 for two of the same words', () => {
+    //
+    expect(dictionary('the the')).toEqual({ the: 2 })
+  })
+
 })
