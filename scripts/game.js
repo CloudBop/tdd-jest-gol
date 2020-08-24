@@ -1,3 +1,6 @@
 window.game = {
-  isAlive
+  isAlive: () => {
+
+    return 0;
+  }
 }
