@@ -13,7 +13,13 @@ const regenerate = (grid) => grid.map(cell => {
   return isAlive(cell, 0)
 })
 
-const add = (...args) => args.reduce((acc, current) => acc + (current || 0))
+const add = (...args) => args.reduce((acc, current) => acc + (current || 0), 0)
+//
+const leftColumnValue = (idx, width, cells) =>
+  idx % width ? [cells[idx - 1], cells[idx - width - 1], cells[idx + width - 1]] : []
+//
+const rightColumnValue = (idx, width, cells) =>
+  (idx + 1) % width ? [cells[idx + 1], cells[idx - width + 1], cells[idx + width + 1]] : []
 
 const countNeighbours = (grid, idx) => {
   // idx = 4
@@ -26,23 +32,13 @@ const countNeighbours = (grid, idx) => {
   const width = Math.sqrt(grid.length)
   // use reducer to check neighbours 
   return add(
-    // left
-    idx % width ? grid[idx - 1] : 0,
-    // right
-    (idx + 1) % width ? grid[idx + 1] : 0,
     // above
     grid[idx - width],
-    // above left
-    idx % width ? grid[idx - width - 1] : 0,
-    // above right
-    (idx + 1) % width ? grid[idx - width + 1] : 0,
     // below
     grid[idx + width],
-    // below left
-    idx % width ? grid[idx + width - 1] : 0,
-    // below right
-    (idx + 1) % width ? grid[idx + width + 1] : 0,
-
+    //
+    ...leftColumnValue(idx, width, grid),
+    ...rightColumnValue(idx, width, grid)
   )
 }
 
