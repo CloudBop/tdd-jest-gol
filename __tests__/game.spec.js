@@ -2,7 +2,7 @@
 // Arrange
 //
 require('../scripts/game');
-const { isAlive, generate } = window.game;
+const { isAlive, generate, regenerate } = window.game;
 
 describe('gol', () => {
   describe('is cell alive algorithm', () => {
@@ -31,9 +31,14 @@ describe('gol', () => {
       // should equal 1 dead cell
       expect(generate(1)).toEqual([0]);
       expect(generate(2)).toEqual([0, 0, 0, 0]);
-
     })
-
+  })
+  //
+  describe('regenerate function', () => {
+    test('should accept generation and update', () => {
+      const grid = generate(1)
+      expect(regenerate(grid)).toEqual([0]);
+    })
   })
 })
 

@@ -10,7 +10,7 @@ const isAlive = (cell, neighbours) => {
 const generate = (root) => new Array(root * root).fill(0)
 const regenerate = (grid) => grid.map(cell => {
 
-  return
+  return isAlive(cell, 0)
 })
 
 window.game = {
