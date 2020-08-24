@@ -30,6 +30,8 @@ describe('gol', () => {
     test('should create an array = X * X', () => {
       // should equal 1 dead cell
       expect(generate(1)).toEqual([0]);
+      expect(generate(2)).toEqual([0, 0, 0, 0]);
+
     })
 
   })
