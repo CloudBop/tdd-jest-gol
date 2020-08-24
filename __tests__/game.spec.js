@@ -38,7 +38,7 @@ describe('gol', () => {
 
     test('should count 0 for array of one', () => {
 
-      expect(countNeighbours([1])).toEqual(0)
+      expect(countNeighbours([1], 0)).toEqual(0)
     })
 
 

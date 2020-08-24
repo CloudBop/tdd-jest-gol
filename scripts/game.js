@@ -13,7 +13,24 @@ const regenerate = (grid) => grid.map(cell => {
   return isAlive(cell, 0)
 })
 
-const countNeighbours = () => 0
+const add = (...args) => args.reduce((acc, current) => acc + (current || 0))
+
+const countNeighbours = (grid, cellIdx) => {
+  // cellIdx = 4
+  // `[
+  //   1, 1, 1, 
+  //   1, idx, 1, 
+  //   1, 1, 1
+  // ]`
+
+  const width = Math.sqrt(grid.length)
+
+  return add(
+    (grid[cellIdx + 1] || 0) +
+    (grid[cellIdx + width] || 0) +
+    (grid[cellIdx + width + 1] || 0)
+  )
+}
 
 window.game = {
   isAlive,
