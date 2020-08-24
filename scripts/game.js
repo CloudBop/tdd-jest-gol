@@ -8,5 +8,5 @@ window.game = {
 
     return 0;
   },
-  generate: () => [0]
+  generate: (root) => new Array(root * root).fill(0)
 }
