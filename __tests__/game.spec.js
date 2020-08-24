@@ -34,10 +34,24 @@ describe('gol', () => {
     })
   })
   //
-  describe('regenerate function', () => {
-    test('should accept generation and update', () => {
+  describe('runs regeneration', () => {
+    test('test that a grid of [0] is always dead', () => {
       const grid = generate(1)
       expect(regenerate(grid)).toEqual([0]);
+    })
+
+    test('test that a grid of [1,0,0,0] is always dead', () => {
+      const startingGrid = generate(2)
+      const grid = generate(2)
+      grid[0] = 1
+      expect(regenerate(grid)).toEqual(startingGrid);
+    })
+
+    test('test that a grid of [1,1,1,0] always returns [1,1,1,1]', () => {
+
+      const grid = [1, 1, 1, 0]
+      const expResult = [1, 1, 1, 1]
+      expect(regenerate(grid)).toEqual(expResult);
     })
   })
 })
