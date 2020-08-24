@@ -17,7 +17,7 @@ describe('dictionary', () => {
     expect(dictionary('the the')).toEqual({ the: 2 })
   })
 
-  test('should return 2 for two of the same words and one extra', () => {
+  test('should return 2 for two of the same words and one extra word', () => {
     //
     expect(dictionary('the cat the')).toEqual({ the: 2, cat: 1 })
   })

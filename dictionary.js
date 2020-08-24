@@ -6,22 +6,28 @@ function splitStringBySpaces(string) {
 
 module.exports = function dictionary(words) {
 
-  //
-  const result = {}
-  //
-  if (words) {
-    const wordList = splitStringBySpaces(words)
+  return (splitStringBySpaces(words) || []).reduce((current, nextWord) => {
+    //
+    current[nextWord] = current[nextWord] + 1 || 1
 
-    wordList.forEach(word => {
-
-      if (result[word]) {
-        result[word]++
-      } else {
-        result[word] = 1;
-      }
-
-    });
-  }
-  //
-  return result
+    return current;
+  },
+    // return object
+    {})
 }
+
+  // //
+  // const result = {}
+  // //
+  // if (words) {
+  //   const wordList = splitStringBySpaces(words)
+
+  //   wordList.forEach(word => {
+  //     if (result[word]) {
+  //       result[word]++
+  //     } else {
+  //       result[word] = 1;
+  //     }
+  //   });
+  // }
+  //
