@@ -8,9 +8,9 @@ const isAlive = (cell, neighbours) => {
   return 0;
 }
 const generate = (root) => new Array(root * root).fill(0)
-const regenerate = (grid) => grid.map(cell => {
+const regenerate = (grid) => grid.map((cell, idx) => {
 
-  return isAlive(cell, 0)
+  return isAlive(cell, countNeighbours(cell, idx))
 })
 
 const add = (...args) => args.reduce((acc, current) => acc + (current || 0), 0)

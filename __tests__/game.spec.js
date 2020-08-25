@@ -2,7 +2,7 @@
 // Arrange
 //
 require('../scripts/game');
-const { isAlive, generate, regenerate, countNeighbours } = window.game;
+const { isAlive, generate, regenerate, countNeighbours, drawGrid } = window.game;
 
 describe('gol', () => {
   describe('is cell alive algorithm', () => {
@@ -112,6 +112,15 @@ describe('gol', () => {
       const expResult = [1, 1, 1, 1]
       expect(regenerate(grid)).toEqual(expResult);
     })
+  })
+
+  describe('browser grid', () => {
+    test('should display cells', () => {
+      document.body.innerHTML = `<div id="grid"> </div>`
+
+      expect(document.querySelectorAll('.container').length).toEqual(1)
+    })
+
   })
 })
 
