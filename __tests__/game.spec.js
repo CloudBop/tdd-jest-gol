@@ -4,6 +4,9 @@
 require('../scripts/game');
 const { isAlive, generate, regenerate, countNeighbours, drawGrid, attachGridEventHandler, getCellsFromDom } = window.game;
 
+// jest helper
+jest.useFakeTimers();
+
 describe('gol', () => {
   describe('is cell alive algorithm', () => {
 
@@ -158,6 +161,25 @@ describe('gol', () => {
     const cells = [0, 0, 1, 1]
     drawGrid(cells)
     expect(getCellsFromDom()).toEqual(cells)
+  })
+
+  describe('start function, initial generation', () => {
+    // spy on this fn
+    const getCellsFromDomSpy = jest.spyOn(game, 'getCellsFromDom')
+    // spy on this fn
+    const regenerateSpy = jest.spyOn(game, 'regenerate')
+    //
+    //
+    game.start()
+    // stop set interval 
+    jest.runOnlyPendingTimers();
+    //
+    expect((setInterval)).toHaveBeenCalled();
+    //
+    expect(getCellsFromDomSpy).toHaveBeenCalled();
+    //
+    expect(regenerateSpy).toHaveBeenCalled();
+
   })
 
 })

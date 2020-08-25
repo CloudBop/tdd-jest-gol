@@ -85,11 +85,17 @@ const getCellsFromDom = () => {
       if (cell.className.includes('dead')) {
         return 0
       }
-
       return 1
-
     })
+}
 
+const start = () => {
+  //
+  let generation = game.getCellsFromDom();
+  // loop
+  setInterval(() => {
+    generation = game.regenerate(generation)
+  }, 100)
 }
 
 window.game = {
@@ -99,5 +105,6 @@ window.game = {
   countNeighbours,
   drawGrid,
   attachGridEventHandler,
-  getCellsFromDom
+  getCellsFromDom,
+  start
 }
