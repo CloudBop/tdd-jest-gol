@@ -95,6 +95,7 @@ const start = () => {
   // loop
   setInterval(() => {
     generation = game.regenerate(generation)
+    game.drawGrid(generation)
   }, 100)
 }
 
