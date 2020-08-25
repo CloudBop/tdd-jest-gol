@@ -115,15 +115,30 @@ describe('gol', () => {
   })
 
   describe('browser grid', () => {
-    test('should display one dead cell', () => {
+    //
+    test('should display fours cells', () => {
       document.body.innerHTML = `<div id="grid"> </div>`
-      drawGrid([0]);
-      expect(document.querySelectorAll('.container').length).toEqual(1)
-      expect(document.querySelectorAll('.cell').length).toEqual(1)
-      expect(document.querySelectorAll('.dead').length).toEqual(1)
+      drawGrid([1, 0, 1, 0]);
+      expect(document.querySelectorAll('.row').length).toEqual(2)
+      expect(document.querySelectorAll('.cell').length).toEqual(4)
+      expect(document.querySelectorAll('.alive').length).toEqual(2)
+      expect(document.querySelectorAll('.dead').length).toEqual(2)
+
+
+      drawGrid([1, 1, 0, 0]);
+      expect(document.querySelectorAll('.row').length).toEqual(2)
+      expect(document.querySelectorAll('.cell').length).toEqual(4)
+      expect(document.querySelectorAll('.alive').length).toEqual(2)
+      expect(document.querySelectorAll('.dead').length).toEqual(2)
+    })
+  })
+
+  describe('grid event handler', () => {
+    test('cell should toggle alive/dead', () => {
 
     })
 
   })
+
 })
 

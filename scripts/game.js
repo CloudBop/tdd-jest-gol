@@ -49,11 +49,22 @@ const createDiv = (className) => {
 }
 
 const drawGrid = (cells) => {
+  const width = Math.sqrt(cells.length);
   const grid = document.getElementById('grid');
   const container = createDiv('container')
-  const cell = createDiv(`cell ${cells[0] === 0 ? 'dead' : 'alive'}`)
+  let row;
+  cells.forEach((cell, idx) => {
 
-  grid.appendChild(cell)
+    if (idx % width === 0) {
+      row = createDiv('row')
+      container.appendChild(row)
+    }
+    //
+    const el = createDiv(`cell ${cell === 0 ? 'dead' : 'alive'}`)
+    row.appendChild(el)
+  });
+  //
+  grid.innerHTML = ""
   grid.appendChild(container)
 }
 
