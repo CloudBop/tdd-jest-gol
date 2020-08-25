@@ -164,23 +164,26 @@ describe('gol', () => {
   })
 
   describe('start function, initial generation', () => {
+    document.body.innerHTML = `<div id="grid"> </div>`
     // spy on these fns to make sure they're called
     const getCellsFromDomSpy = jest.spyOn(game, 'getCellsFromDom');
     const regenerateSpy = jest.spyOn(game, 'regenerate');
     const drawGridSpy = jest.spyOn(game, 'drawGrid');
     //
-    //
     game.start()
     // stop indefinite set interval 
     jest.runOnlyPendingTimers();
-    //
     expect((setInterval)).toHaveBeenCalled();
-    //
     expect(getCellsFromDomSpy).toHaveBeenCalled();
-    //
     expect(regenerateSpy).toHaveBeenCalled();
-    //
     expect(drawGridSpy).toHaveBeenCalled();
+  })
+
+  describe('stop function', () => {
+    test('should clear interval', () => {
+      game.stop();
+      expect(clearInterval).toHaveBeenCalled();
+    })
 
   })
 
