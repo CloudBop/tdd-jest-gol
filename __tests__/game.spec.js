@@ -115,10 +115,13 @@ describe('gol', () => {
   })
 
   describe('browser grid', () => {
-    test('should display cells', () => {
+    test('should display one dead cell', () => {
       document.body.innerHTML = `<div id="grid"> </div>`
-      drawGrid();
+      drawGrid([0]);
       expect(document.querySelectorAll('.container').length).toEqual(1)
+      expect(document.querySelectorAll('.cell').length).toEqual(1)
+      expect(document.querySelectorAll('.dead').length).toEqual(1)
+
     })
 
   })

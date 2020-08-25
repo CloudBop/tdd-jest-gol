@@ -42,10 +42,18 @@ const countNeighbours = (grid, idx) => {
   )
 }
 
-const drawGrid = () => {
+const createDiv = (className) => {
+  const el = document.createElement('div');
+  el.className = className
+  return el
+}
+
+const drawGrid = (cells) => {
   const grid = document.getElementById('grid');
-  const container = document.createElement('div');
-  container.className = 'container';
+  const container = createDiv('container')
+  const cell = createDiv(`cell ${cells[0] === 0 ? 'dead' : 'alive'}`)
+
+  grid.appendChild(cell)
   grid.appendChild(container)
 }
 
