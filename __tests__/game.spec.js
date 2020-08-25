@@ -2,7 +2,7 @@
 // Arrange
 //
 require('../scripts/game');
-const { isAlive, generate, regenerate, countNeighbours, drawGrid, attachGridEventHandler } = window.game;
+const { isAlive, generate, regenerate, countNeighbours, drawGrid, attachGridEventHandler, getCellsFromDom } = window.game;
 
 describe('gol', () => {
   describe('is cell alive algorithm', () => {
@@ -136,6 +136,7 @@ describe('gol', () => {
   describe('grid event handler', () => {
     test('cell should toggle alive/dead', () => {
       //
+      document.body.innerHTML = `<div id="grid"> </div>`
       drawGrid([0])
       attachGridEventHandler();
       //
@@ -149,9 +150,14 @@ describe('gol', () => {
       document.querySelector('.alive').click();
       expect(document.querySelectorAll('.dead').length).toEqual(1)
       expect(document.querySelectorAll('.alive').length).toEqual(0)
-
     })
+  })
 
+  describe('get all cells from DOM', () => {
+    document.body.innerHTML = `<div id="grid"> </div>`
+    const cells = [0, 0, 1, 1]
+    drawGrid(cells)
+    expect(getCellsFromDom()).toEqual(cells)
   })
 
 })

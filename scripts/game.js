@@ -77,11 +77,27 @@ const attachGridEventHandler = () => {
   }, false)
 }
 
+const getCellsFromDom = () => {
+  //
+  return Array.from(document.querySelectorAll('.cell'))
+    .map((cell, idx) => {
+      //
+      if (cell.className.includes('dead')) {
+        return 0
+      }
+
+      return 1
+
+    })
+
+}
+
 window.game = {
   isAlive,
   generate,
   regenerate,
   countNeighbours,
   drawGrid,
-  attachGridEventHandler
+  attachGridEventHandler,
+  getCellsFromDom
 }
