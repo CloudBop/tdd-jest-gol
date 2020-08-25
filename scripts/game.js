@@ -42,9 +42,17 @@ const countNeighbours = (grid, idx) => {
   )
 }
 
+const drawGrid = () => {
+  const grid = document.getElementById('grid');
+  const container = document.createElement('div');
+  container.className = 'container';
+  grid.appendChild(container)
+}
+
 window.game = {
   isAlive,
   generate,
   regenerate,
-  countNeighbours
+  countNeighbours,
+  drawGrid
 }

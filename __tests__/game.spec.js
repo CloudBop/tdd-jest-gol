@@ -117,7 +117,7 @@ describe('gol', () => {
   describe('browser grid', () => {
     test('should display cells', () => {
       document.body.innerHTML = `<div id="grid"> </div>`
-
+      drawGrid();
       expect(document.querySelectorAll('.container').length).toEqual(1)
     })
 
