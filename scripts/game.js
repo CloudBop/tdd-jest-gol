@@ -3,15 +3,9 @@
 //
 const isAlive = (cell, neighbours) => {
 
-  if (Boolean(cell) && Number(neighbours) === 2 || Number(neighbours) === 3) return 1
-
-  return 0;
+  return neighbours === 3 || (Boolean(cell) && neighbours === 2) ? 1 : 0
 }
 const generate = (root) => new Array(root * root).fill(0)
-const regenerate = (grid) => grid.map((cell, idx) => {
-
-  return isAlive(cell, countNeighbours(cell, idx))
-})
 
 const add = (...args) => args.reduce((acc, current) => acc + (current || 0), 0)
 //
@@ -21,16 +15,20 @@ const leftColumnValue = (idx, width, cells) =>
 const rightColumnValue = (idx, width, cells) =>
   (idx + 1) % width ? [cells[idx + 1], cells[idx - width + 1], cells[idx + width + 1]] : []
 
+//
+const regenerate = (grid) => grid.map((cell, idx) => {
+
+  return isAlive(cell, countNeighbours(grid, idx))
+})
 const countNeighbours = (grid, idx) => {
+  const width = Math.sqrt(grid.length)
   // idx = 4
   // `[
   //   1, 1, 1, 
   //   1, idx, 1, 
   //   1, 1, 1
   // ]`
-
-  const width = Math.sqrt(grid.length)
-  // use reducer to check neighbours 
+  // use reduce to check neighbours 
   return add(
     // above
     grid[idx - width],
@@ -71,10 +69,11 @@ const drawGrid = (cells) => {
 const attachGridEventHandler = () => {
   document.getElementById('grid').addEventListener('click', function (evt) {
     const className = evt.target.className;
+    console.log('this', evt.target)
     evt.target.className = className.includes('dead')
       ? className.replace('dead', 'alive')
       : className.replace('alive', 'dead')
-  }, false)
+  })
 }
 
 const getCellsFromDom = () => {
@@ -89,15 +88,17 @@ const getCellsFromDom = () => {
     })
 }
 
+let gameLoop;
 const start = () => {
   //
   let generation = game.getCellsFromDom();
   // loop
-  setInterval(() => {
+  gameLoop = setInterval(() => {
     generation = game.regenerate(generation)
     game.drawGrid(generation)
-  }, 100)
+  }, 1000)
 }
+const stop = () => clearInterval(gameLoop)
 
 window.game = {
   isAlive,
@@ -107,5 +108,6 @@ window.game = {
   drawGrid,
   attachGridEventHandler,
   getCellsFromDom,
-  start
+  start,
+  stop
 }

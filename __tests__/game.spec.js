@@ -48,7 +48,7 @@ describe('gol', () => {
     test('should return 2 alive neighbours', () => {
       const idx = 0
       // [
-      //   idx, 1 ,
+      //   1, 1 ,
       //    1 , 0 
       // ]
       expect(countNeighbours([1, 1, 1, 0], idx)).toEqual(2)
@@ -57,7 +57,7 @@ describe('gol', () => {
     test('should return 2 alive neighbours', () => {
       const idx = 1
       // [
-      //    1 , idx
+      //    1 , 1
       //    1 , 0 
       // ]
       expect(countNeighbours([1, 1, 1, 0], idx)).toEqual(2)
@@ -67,7 +67,7 @@ describe('gol', () => {
       const idx = 2
       // [
       //    1 , 1
-      //   idx, 0 
+      //   1, 0 
       // ]
       expect(countNeighbours([1, 1, 1, 0], idx)).toEqual(2)
     })
@@ -109,11 +109,15 @@ describe('gol', () => {
       expect(regenerate(grid)).toEqual(startingGrid);
     })
     // xtest skip test
-    xtest('test [1,1,1,0] returns [1,1,1,1]', () => {
+    test('test [1,1,1,0] returns [1,1,1,1]', () => {
+      const grid = [1, 1, 1, 0];
+      const expResult = [1, 1, 1, 1];
 
-      const grid = [1, 1, 1, 0]
-      const expResult = [1, 1, 1, 1]
+      console.log('before grid', grid)
+      console.log('after regenerate(grid)', regenerate(grid))
+
       expect(regenerate(grid)).toEqual(expResult);
+      console.log("regenerate(grid)", regenerate(grid))
     })
   })
 

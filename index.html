@@ -63,7 +63,7 @@
       border: 1px solid #808080;
     }
 
-    .cell.live {
+    .cell.alive {
       background-color: #1c1c1c;
     }
   </style>
@@ -104,14 +104,19 @@
     const startButton = document.getElementById("start");
     const stopButton = document.getElementById("stop");
 
+    game.drawGrid(game.generate(8))
+    game.attachGridEventHandler()
+
     startButton.onclick = event => {
       startButton.setAttribute("disabled", true);
       stopButton.removeAttribute("disabled");
+      game.start();
     };
 
     stopButton.onclick = event => {
       startButton.removeAttribute("disabled");
       stopButton.setAttribute("disabled", true);
+      game.stop();
     };
   </script>
 </body>
